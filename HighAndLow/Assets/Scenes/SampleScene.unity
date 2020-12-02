@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 149799362}
   - component: {fileID: 149799361}
   - component: {fileID: 149799365}
+  - component: {fileID: 149799366}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -365,6 +366,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   High: 0
+  Judge: 0
+--- !u!114 &149799366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149799360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127b2ba40fea2ac47bbb0435a5c587ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealer: {fileID: 519420033}
+  playerCard: {fileID: 519420030}
+  cpuCard: {fileID: 519420034}
+  playerJudge: {fileID: 149799365}
 --- !u!1 &372918534
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,12 +811,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 149799360}
-        m_MethodName: 
+      - m_Target: {fileID: 149799365}
+        m_MethodName: LowJudge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

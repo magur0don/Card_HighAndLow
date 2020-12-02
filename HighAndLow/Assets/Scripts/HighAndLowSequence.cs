@@ -7,6 +7,7 @@ public class HighAndLowSequence : MonoBehaviour
     private enum GameSequence
     {
         Invalide,
+        Init,
         Start,
         Deal,
         PlayerJudge,
@@ -14,35 +15,82 @@ public class HighAndLowSequence : MonoBehaviour
     }
 
     private GameSequence gameSequence = GameSequence.Invalide;
-    
+
+    public Dealer dealer;
+
+    public PlayerCard playerCard;
+
+    public CPUCard cpuCard;
+
+    public PlayerJudge playerJudge;
+
     void Update()
     {
-        switch (gameSequence) {
+        switch (gameSequence)
+        {
 
             case GameSequence.Invalide:
 
-                gameSequence = GameSequence.Start;
+                gameSequence = GameSequence.Init;
                 break;
+
+            case GameSequence.Init:
+
+                // PlayerとCPUにデッキをディールする
+                playerCard.SetPlayerDeck();
+                cpuCard.SetCPUDeck();
+                gameSequence = GameSequence.Deal;
+                break;
+
             case GameSequence.Start:
 
                 gameSequence = GameSequence.Deal;
                 break;
             case GameSequence.Deal:
 
-                // PlayerとCPUにデッキをディールする
-                
+                // PlayerとCPUにカードをディールする
+                playerCard.SetPlayerCard();
+                cpuCard.SetCPUCard();
+
+                Debug.Log(playerCard.playerCard.Number);
+                Debug.Log(cpuCard.cpuCard.Number);
                 gameSequence = GameSequence.PlayerJudge;
                 break;
             case GameSequence.PlayerJudge:
 
                 // 数を予想してボタンを押したらShowに進む
-
-                gameSequence = GameSequence.Show;
+                if (playerJudge.Judge)
+                {
+                    gameSequence = GameSequence.Show;
+                }
                 break;
             case GameSequence.Show:
 
                 // プレイヤーが確認したらStartに戻って次のゲーム
 
+                if (playerJudge.High)
+                {
+                    if (playerCard.playerCard.Number > cpuCard.cpuCard.Number)
+                    {
+                        Debug.Log("勝ち");
+                    }
+                    else
+                    {
+                        Debug.Log("負け");
+                    }
+                }
+                else
+                {
+                    if (playerCard.playerCard.Number < cpuCard.cpuCard.Number)
+                    {
+                        Debug.Log("勝ち");
+                    }
+                    else
+                    {
+                        Debug.Log("負け");
+                    }
+                }
+                playerJudge.Judge = false;
                 gameSequence = GameSequence.Start;
                 break;
         }

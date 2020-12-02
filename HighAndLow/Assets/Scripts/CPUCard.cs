@@ -8,10 +8,16 @@ public class CPUCard : MonoBehaviour
 
     private List<Card> cpuDeck = new List<Card>();
 
-    private void Start()
+    public Card cpuCard;
+
+    public void SetCPUDeck()
     {
         cpuDeck = Dealer.GetCPUDeck();
-        var firstCard = Deck.GetCard(cpuDeck);
-        Debug.Log($"CPU : {firstCard.CardSuit}{firstCard.Number}");
+    }
+
+    public void SetCPUCard()
+    {
+        cpuCard = Deck.GetCard(cpuDeck);
+        Debug.Log(cpuCard.Number);
     }
 }

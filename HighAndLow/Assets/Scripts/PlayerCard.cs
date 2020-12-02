@@ -8,10 +8,17 @@ public class PlayerCard : MonoBehaviour
 
     private List<Card> playerDeck = new List<Card>();
 
-    private void Start()
+    public Card playerCard;
+
+    public void SetPlayerDeck()
     {
         playerDeck = Dealer.GetPlayerDeck();
-        var firstCard = Deck.GetCard(playerDeck);
-        Debug.Log($"Player : {firstCard.CardSuit}{firstCard.Number}");
     }
+
+    public void SetPlayerCard()
+    {
+        playerCard = Deck.GetCard(playerDeck);
+        Debug.Log(playerCard.Number);
+    }
+
 }

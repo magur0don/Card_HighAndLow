@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Dealer : MonoBehaviour
@@ -12,21 +13,13 @@ public class Dealer : MonoBehaviour
 
     public List<Card> GetPlayerDeck()
     {
-        var playerDeck = new List<Card>();
-        for (int i = 0; i < CardHelper.CardMax / 2; i++)
-        {
-            playerDeck.Add(GameDeck[i]);
-        }
+        var playerDeck = GameDeck.Where((c, i) => i % 2 == 0).ToList();
         return playerDeck;
     }
 
     public List<Card> GetCPUDeck()
     {
-        var cpuDeck = new List<Card>();
-        for (int i = CardHelper.CardMax / 2; i < CardHelper.CardMax; i++)
-        {
-            cpuDeck.Add(GameDeck[i]);
-        }
+        var cpuDeck = GameDeck.Where((c, i) => i % 2 != 0).ToList();
         return cpuDeck;
     }
 
