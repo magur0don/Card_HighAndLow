@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CPUCard : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class CPUCard : MonoBehaviour
 
     public Card cpuCard;
 
+    public Image CPUCardImage;
+
+    public CardImageHelper cardImageHelper;
+
     public void SetCPUDeck()
     {
         cpuDeck = Dealer.GetCPUDeck();
@@ -18,6 +23,12 @@ public class CPUCard : MonoBehaviour
     public void SetCPUCard()
     {
         cpuCard = Deck.GetCard(cpuDeck);
-        Debug.Log(cpuCard.Number);
+        CPUCardImage.sprite = cardImageHelper.GetCardSprite();
     }
+
+    public void ShowCPUCard()
+    {
+        CPUCardImage.sprite = cardImageHelper.GetCardSprite(cpuCard);
+    }
+
 }

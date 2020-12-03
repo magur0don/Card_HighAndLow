@@ -67,6 +67,7 @@ public class HighAndLowSequence : MonoBehaviour
             case GameSequence.Show:
 
                 // プレイヤーが確認したらStartに戻って次のゲーム
+                cpuCard.ShowCPUCard();
 
                 if (playerJudge.High)
                 {

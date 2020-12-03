@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCard : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlayerCard : MonoBehaviour
 
     public Card playerCard;
 
+    public Image PlayerCardImage;
+
+    public CardImageHelper cardImageHelper;
+
     public void SetPlayerDeck()
     {
         playerDeck = Dealer.GetPlayerDeck();
@@ -18,7 +23,7 @@ public class PlayerCard : MonoBehaviour
     public void SetPlayerCard()
     {
         playerCard = Deck.GetCard(playerDeck);
-        Debug.Log(playerCard.Number);
+        PlayerCardImage.sprite = cardImageHelper.GetCardSprite(playerCard);
     }
 
 }
